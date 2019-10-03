@@ -1,4 +1,6 @@
 // https://s1.whiteboardfox.com/s/2ae37dc832647bad.png
+import 'dart:io';
+
 class Link {
   String value;
   Link next;
@@ -24,10 +26,10 @@ main() {
   Link sixthLink = Link('Parvati');
   fifthLink.next = sixthLink;
 
-  print(firstLink);
+  printChain(firstLink);
   print('-------');
   removeLink(firstLink, 'Makiko');
-  print(firstLink);
+  printChain(firstLink);
 }
 
 // Printing the linkTree
@@ -42,5 +44,14 @@ void printChain(Link link) {
 // Exercise: Write a function which takes in a link and a word. It should remove the link with value matching word
 void removeLink(Link firstLink, String word) {
   // Implement function here
+  Link currentLink = firstLink;
 
+  while (currentLink != null) {
+    if (currentLink.next.value == word) {
+      currentLink.next = currentLink.next.next;
+    } else {
+      currentLink = currentLink.next;
+    }
+    currentLink = currentLink.next;
+  }
 }
